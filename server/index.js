@@ -7,6 +7,9 @@ app.use(cors());
 
 const PORT = process.env.PORT || 4000;
 
+const connectDB = require("./config/database");
+connectDB();
+
 app.get("/", (req, res) => {
   res.send("<h1> This is Backend HomePage</h1>");
 });
