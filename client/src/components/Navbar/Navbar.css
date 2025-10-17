@@ -1,54 +1,85 @@
-.navbar{
-    height: 70px;
-    width: 100%;
-    display: flex;
-    overflow: hidden;
-    justify-content: space-between;
-    padding: 10px 20px;
+.navbar {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #212020;
+  color: white;
 }
-.nav-image{
-    display: flex;
-    align-items: center;  
-    cursor: pointer;
+.nav-image {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
-.nav-image p{
-    font-size: 20px;
-    padding-left: 10px;
+.nav-image p {
+  font-size: 20px;
+  padding-left: 10px;
+  font-weight: 1000;
 }
 
-.navbar .menu{
-    width: 40%;
-    display: flex;
-    list-style: none;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 50px;
+.navbar .menu {
+  width: 40%;
+  display: flex;
+  list-style: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
 }
-.navbar ul li{
-    color: black;
-    font-size: 20px;
+.navbar ul li {
+  color: black;
+  font-size: 20px;
+  color: white;
 }
-.navbar .menu a{
-    text-decoration: none;
+.navbar .menu a {
+  text-decoration: none;
 }
-.navbar img{
-    height: 60px;
+.navbar img {
+  height: 60px;
 }
-.main-btn{
-    display: flex;
-    align-items: center;
-    width: 20%;
-    justify-content: space-between;
+.main-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.main-btn a button{
-    background-color: #FF9A8B;
-    background-image: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
-    width: 100px;
-    height: 45px;
-    border-radius: 5px;
-    border: none;
-    font-family: 'Borel', cursive;
-    font-size: 18px;
-    cursor: pointer;
-    color: rgb(243, 237, 237);
+.main-btn button:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+.main-btn button {
+  margin-left: 20px;
+  width: 100px;
+  height: 45px;
+  border-radius: 5px;
+  border: none;
+  font-family: "Borel", cursive;
+  font-size: 18px;
+  cursor: pointer;
+  color: rgb(243, 237, 237);
+}
+.main-btn button.login-btn {
+  background-color: rgb(46, 46, 187);
+  color: white;
+}
+.main-btn button.signup-btn {
+  background-color: #212020;
+  border: 2px solid rgb(255, 255, 255);
+  color: white;
+}
+@media screen and (max-width: 750px) {
+  .navbar .menu {
+    width: 60%;
+    padding: 0 20px;
+  }
+  .main-btn button {
+    width: 80px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 633px) {
+  .navbar .menu {
+    display: none;
+  }
 }
