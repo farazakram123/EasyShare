@@ -1,0 +1,104 @@
+.dashboard{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 88.2vh;
+    padding: 20px 50px;
+    background-color: #d4d3d3c5;
+    gap: 20px;
+}
+.dashboard-container{
+    display: flex;
+}
+.dashboard-container .left-container{
+    width: 40%;
+    height: 70vh;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0;
+}
+.upload-form{
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    margin-top: 50px;
+}
+.upload-form input[type="file"] {
+    padding: 10px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 20px;
+    place-items: center;
+    color: black;
+    font-family: "Borel", cursive;
+}
+.upload-form .email-to-send {
+    padding: 10px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    place-items: center;
+    color: black;
+    font-family: "Borel", cursive;
+}
+.upload-form button{
+    padding: 10px 20px;
+    width: 80%;
+    place-self: center;
+    background-color: rgb(46, 46, 187);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    font-family: "Borel", cursive;
+}
+.black {
+    color: black;
+}
+.dashboard-container .right-container{
+    width: 60%;
+    max-height: 70vh;
+    margin-left: 20px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline;
+}
+.right-container-headings {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+@media (max-width: 800px) {
+    .dashboard{
+        padding: 10px 20px;
+        height: 92vh;
+    }
+    .dashboard-container{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .dashboard-container {
+        align-items: center;
+    }
+    .dashboard-container .left-container, .dashboard-container .right-container{
+        width: 90%;
+        height: auto;
+        max-height: none;
+        margin: 0;
+        font-size: 0.9rem;
+    }
+    .upload-form input[type="file"] {
+        font-size: 0.9rem;
+    }
+    .upload-form input[type="email"] {
+        font-size: 0.9rem;
+    }
+    .upload-form button{
+        font-size: 0.9rem;
+    }
+}
