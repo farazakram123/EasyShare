@@ -3,7 +3,7 @@ import './Navbar.css'
 import fileLogo from '../../assets/fileLogo.png'
 import {Link} from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({loginStatus, signupStatus, toggleLoginStatus, toggleSignupStatus}) => {
   return (
     <div className='navbar'>
         <div className="nav-image">
@@ -17,8 +17,8 @@ const Navbar = () => {
             <Link to="/"><li>FAQ</li></Link>
         </ul>
         <div className="main-btn">
-            <Link to="/login"><button className='login-btn'>Login</button></Link>
-            <Link to="/signup"><button className='signup-btn'>SignUp</button></Link>
+            <button onClick={toggleLoginStatus} className='login-btn'>{loginStatus ? 'Close' : 'Login'}</button>
+            <button onClick={toggleSignupStatus} className='signup-btn'>{signupStatus ? 'Close' : 'SignUp'}</button>
         </div>
         </div>
   )

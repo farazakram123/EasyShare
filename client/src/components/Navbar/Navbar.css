@@ -67,7 +67,7 @@
   border: 2px solid rgb(255, 255, 255);
   color: white;
 }
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 800px) {
   .navbar .menu {
     width: 60%;
     padding: 0 20px;
@@ -78,8 +78,15 @@
     font-size: 16px;
   }
 }
-@media screen and (max-width: 633px) {
-  .navbar .menu {
+@media screen and (max-width: 739px) {
+  .navbar {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+  }
+  .navbar .menu{
+    width: 0%;
     display: none;
   }
 }

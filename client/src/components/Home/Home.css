@@ -1,5 +1,11 @@
+.home-main-container{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+}
 .home-container {
   min-height: 88.2vh;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,10 +62,39 @@
     scale: 1.05;
     transition: 0.3s;
 }
-.right-container {
+.right-container{
     width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding-right: 100px;
+}
+.login-signup-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 800px) {
+  .home-container{
+    flex-direction: column;
+    min-height: 93vh;
+    width: 100vw;
+  }
+  .left-container{
+    width: 80%;
+    margin-left: 10px;
+    padding: 20px 20px;
+  }
+  .left-container-heading{
+    font-size: 1.7rem;
+  }
+  .get-started-btn{
+    font-size: 0.8rem;
+  }
+  .right-container{
+    width: 100%;
+    padding: 20px 20px;
+    margin: 20px 20px;
+  }
 }

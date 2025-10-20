@@ -1,9 +1,49 @@
 import React from 'react'
 import './Login.css'
-const Login = () => {
+import { useState } from 'react'
+import { useEffect } from 'react';
+
+const Login = ({toggleLoginStatus, toggleSignupStatus}) => {
+  const [data, setData] = useState({
+    email: '',
+    password: ''
+  });
+
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setData(data => ({...data, [name]: value}));
+  }
+
+  const onLogin = (e) => {
+    e.preventDefault();
+    // Handle login logic here
+    console.log('User logged in with data:', data);
+  }
+
   return (
-    <div>
-      Login
+    <div className="login-popup">
+      <form onSubmit={onLogin} className='login-popup-container'>
+        <div className="login-popup-top">
+          <h1 className="welcome-back">Welcome back</h1>
+          <p onClick={toggleLoginStatus} className="x">X</p>
+        </div>
+        <div className="login-popup-middle">
+          Access your files securely.
+        </div>
+
+        <div className="login-popup-inputs">
+          <input onChange={onChangeHandler} name='email' value={data.email} type="email" placeholder='Enter your email' required />
+
+          <input onChange={onChangeHandler} name='password' value={data.password} type="password" placeholder='Enter your password' required />
+        </div>
+
+        <button className='login-btn'>Login</button>
+        <div className="create-new-acc">
+          <p>Create a new account? <span onClick={toggleSignupStatus}> 
+            Sign Up here
+          </span> </p>
+        </div>
+      </form>
     </div>
   )
 }
