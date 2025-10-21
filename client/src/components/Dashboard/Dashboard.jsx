@@ -1,10 +1,10 @@
 import React from 'react'
 import './Dashboard.css'
 import Navbar from '../Navbar/Navbar'
-const Dashboard = ({loginStatus, signupStatus, toggleLoginStatus, toggleSignupStatus, loginSuccess, logoutFunction}) => {
+const Dashboard = () => {
     return (
         <div>
-            <Navbar loginStatus={loginStatus} signupStatus={signupStatus} toggleLoginStatus={toggleLoginStatus} toggleSignupStatus={toggleSignupStatus} loginSuccess={loginSuccess} logoutFunction={logoutFunction} />
+            <Navbar />
             <div className="dashboard">
                 <h1>Dashboard</h1>
                 <div className="dashboard-container">

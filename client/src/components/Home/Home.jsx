@@ -2,37 +2,21 @@ import React from 'react'
 import './Home.css'
 import Navbar from '../Navbar/Navbar'
 import Upload from '../Svg/Upload'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState, useContext } from 'react'
+import { StoreContext } from '../../context/StoreContext.jsx'
 import Login from '../Login/Login'
 import Signup from '../SignUp/SignUp'
 import Dashboard from '../Dashboard/Dashboard'
 
 const Home = () => {
-  const [loginStatus, setLoginStatus] = useState(false);
-  const [signupStatus, setSignupStatus] = useState(false);
-  const [loginSuccess, setLoginSuccess] = useState(true);
-
-  const toggleLoginStatus = () => {
-    setLoginStatus(!loginStatus);
-    setSignupStatus(false);
-  }
-
-  const toggleSignupStatus = () => {
-    setSignupStatus(!signupStatus);
-    setLoginStatus(false);
-  }
-
-  const logoutFunction = () => {
-    setLoginSuccess(false);
-  }
+  const {loginSuccess, loginStatus, signupStatus, toggleSignupStatus} = useContext(StoreContext);
 
   return (
     <div>
       {
-        loginSuccess ? <Dashboard loginStatus={loginStatus} signupStatus={signupStatus} toggleLoginStatus={toggleLoginStatus} toggleSignupStatus={toggleSignupStatus} loginSuccess={loginSuccess} logoutFunction={logoutFunction} /> :
+        loginSuccess ? <Dashboard /> :
           <div className='home-main-container'>
-            <Navbar loginStatus={loginStatus} signupStatus={signupStatus} toggleLoginStatus={toggleLoginStatus} toggleSignupStatus={toggleSignupStatus} loginSuccess={loginSuccess} />
+            <Navbar />
 
             <div className="home-container">
               <div className="left-container">
@@ -53,12 +37,12 @@ const Home = () => {
       <div>
         {
           loginStatus && <div className="login-signup-container">
-            <Login toggleLoginStatus={toggleLoginStatus} toggleSignupStatus={toggleSignupStatus} />
+            <Login />
           </div>
         }
         {
           signupStatus && <div className="login-signup-container">
-            <Signup toggleLoginStatus={toggleLoginStatus} toggleSignupStatus={toggleSignupStatus} />
+            <Signup />
           </div>
         }
       </div>

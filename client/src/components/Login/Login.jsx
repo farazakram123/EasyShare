@@ -1,9 +1,13 @@
 import React from 'react'
 import './Login.css'
-import { useState } from 'react'
-import { useEffect } from 'react';
+import { useState, useContext } from 'react'
+import { StoreContext } from '../../context/StoreContext.jsx'
+import axios from 'axios'
+import {toast} from 'react-toastify'
 
-const Login = ({toggleLoginStatus, toggleSignupStatus}) => {
+const Login = () => {
+  const {url, toggleSignupStatus, toggleLoginStatus, setLoginSuccess} = useContext(StoreContext);
+
   const [data, setData] = useState({
     email: '',
     password: ''
@@ -14,9 +18,21 @@ const Login = ({toggleLoginStatus, toggleSignupStatus}) => {
     setData(data => ({...data, [name]: value}));
   }
 
-  const onLogin = (e) => {
+  const onLogin = async (e) => {
     e.preventDefault();
     // Handle login logic here
+    let newUrl = url + '/api/user/login';
+
+    const response = await axios.post(newUrl, data);
+
+    if(response.data.success){
+      toast.success(response.data.message);
+      toggleLoginStatus();
+      setLoginSuccess(true);
+
+    } else {
+      toast.error(response.data.message);
+    }
     console.log('User logged in with data:', data);
   }
 

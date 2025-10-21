@@ -2,8 +2,11 @@ import React from 'react'
 import './Navbar.css'
 import fileLogo from '../../assets/fileLogo.png'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { StoreContext } from '../../context/StoreContext.jsx'
 
-const Navbar = ({ loginStatus, signupStatus, toggleLoginStatus, toggleSignupStatus, loginSuccess, logoutFunction }) => {
+const Navbar = () => {
+    const {loginSuccess, logoutFunction, loginStatus, signupStatus, toggleLoginStatus, toggleSignupStatus} = useContext(StoreContext);
     return (
         <div className='navbar'>
             <div className="nav-image">

@@ -1,9 +1,13 @@
 import React from 'react'
 import './SignUp.css'
-import { useState } from 'react'
-import { useEffect } from 'react';
+import { useState, useContext } from 'react'
+import { StoreContext } from '../../context/StoreContext.jsx'
+import axios from 'axios';
+import {toast} from 'react-toastify';
 
-const SignUp = ({ toggleLoginStatus, toggleSignupStatus }) => {
+const SignUp = () => {
+    const {url, toggleSignupStatus, toggleLoginStatus} = useContext(StoreContext);
+
     const [data, setData] = useState({
         name: '',
         email: '',
@@ -15,11 +19,19 @@ const SignUp = ({ toggleLoginStatus, toggleSignupStatus }) => {
         setData(data => ({ ...data, [name]: value }));
     }
 
-    const onSignup = (e) => {
+    const onSignup = async (e) => {
         e.preventDefault();
         // Handle signup logic here
+        let newUrl = url + '/api/user/register';
 
-        console.log('User signed up with data:', data);
+        const response = await axios.post(newUrl, data);
+
+        if(response.data.success){
+            toast.success(response.data.message);
+            toggleSignupStatus();
+        } else {
+            toast.error(response.data.message);
+        }
     }
 
     return (
