@@ -13,7 +13,11 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    files: [{
+        type: Schema.Types.ObjectId,
+        ref: 'File'
+    }]
 }, {
     minimize: false
 })
