@@ -9,12 +9,12 @@ import Signup from '../SignUp/SignUp'
 import Dashboard from '../Dashboard/Dashboard'
 
 const Home = () => {
-  const {loginSuccess, loginStatus, signupStatus, toggleSignupStatus} = useContext(StoreContext);
+  const {loginStatus, signupStatus, toggleSignupStatus} = useContext(StoreContext);
 
   return (
     <div>
       {
-        loginSuccess ? <Dashboard /> :
+        (localStorage.getItem('token')) ? <Dashboard /> :
           <div className='home-main-container'>
             <Navbar />
 

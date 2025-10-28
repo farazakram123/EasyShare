@@ -73,11 +73,16 @@ export const fetchFiles = async (req, res) => {
 
     let allFiles = [];
 
-    for(let i=0; i<user.files.length; i++){
+    for(let i=0; i<Math.min(user.files.length, 5); i++){
         const file = await File.findById(user.files[i])
         if(!file) continue;
         let string = file.url.substr(0,50) + "fl_attachment/" + file.url.substr(50);
-        allFiles.push(string)
+        allFiles.push({
+              url : string, 
+              name: file.name, 
+              size: file.size, 
+              format: file.format
+        })
     }
     res.status(200).json({
       success: true,

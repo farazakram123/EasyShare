@@ -76,7 +76,7 @@
 @media (max-width: 800px) {
     .dashboard{
         padding: 10px 20px;
-        height: 92vh;
+        height: 100%;
     }
     .dashboard-container{
         flex-direction: column;
@@ -100,5 +100,8 @@
     }
     .upload-form button{
         font-size: 0.9rem;
+    }
+    .right-container-headings{
+        display: none;
     }
 }

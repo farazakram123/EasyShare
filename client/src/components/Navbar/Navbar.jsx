@@ -6,7 +6,7 @@ import { useContext } from 'react'
 import { StoreContext } from '../../context/StoreContext.jsx'
 
 const Navbar = () => {
-    const {loginSuccess, logoutFunction, loginStatus, signupStatus, toggleLoginStatus, toggleSignupStatus} = useContext(StoreContext);
+    const {logoutFunction, loginStatus, signupStatus, toggleLoginStatus, toggleSignupStatus} = useContext(StoreContext);
     return (
         <div className='navbar'>
             <div className="nav-image">
@@ -20,7 +20,7 @@ const Navbar = () => {
                 <Link to="/"><li>FAQ</li></Link>
             </ul>
             {
-                loginSuccess ? <button onClick={() => logoutFunction()} className='logout-btn main-btn'>Logout</button> :
+                (localStorage.getItem('token')) ? <button onClick={() => logoutFunction()} className='logout-btn main-btn'>Logout</button> :
                     <div className="main-btn">
                         <button onClick={toggleLoginStatus} className='login-btn'>{loginStatus ? 'Close' : 'Login'}</button>
                         <button onClick={toggleSignupStatus} className='signup-btn'>{signupStatus ? 'Close' : 'SignUp'}</button>

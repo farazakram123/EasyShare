@@ -6,7 +6,7 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 
 const Login = () => {
-  const {url, toggleSignupStatus, toggleLoginStatus, setLoginSuccess} = useContext(StoreContext);
+  const { url, setToken, toggleSignupStatus, toggleLoginStatus } = useContext(StoreContext);
 
   const [data, setData] = useState({
     email: '',
@@ -27,13 +27,13 @@ const Login = () => {
 
     if(response.data.success){
       toast.success(response.data.message);
+      setToken(response.data.token);
+      localStorage.setItem('token', response.data.token);
       toggleLoginStatus();
-      setLoginSuccess(true);
-
+      localStorage.setItem('loggedInUserEmail', data.email);
     } else {
       toast.error(response.data.message);
     }
-    console.log('User logged in with data:', data);
   }
 
   return (

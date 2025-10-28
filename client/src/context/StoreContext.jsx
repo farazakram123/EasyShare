@@ -1,13 +1,13 @@
 import { createContext, useState } from "react";
 import { useEffect } from "react";
 import {toast} from 'react-toastify'
+import axios from "axios";
 
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = ({ children }) => {
 
     const url = 'http://localhost:8000';
-    const [loginSuccess, setLoginSuccess] = useState(false);
     const [signupStatus, setSignupStatus] = useState(false);
     const [loginStatus, setLoginStatus] = useState(false);
 
@@ -25,12 +25,12 @@ const StoreContextProvider = ({ children }) => {
 
     const logoutFunction = () => {
         toast.success('Logout Successful');
-        setLoginSuccess(false);
+        setToken("");
+        localStorage.clear();
+        setTimeout(() => {
+            window.location.reload();
+        }, 500);
     }
-
-    useEffect(() => {
-
-    }, [])
 
     const contextValue = {
         url,
@@ -40,8 +40,6 @@ const StoreContextProvider = ({ children }) => {
         setSignupStatus,
         loginStatus,
         setLoginStatus,
-        loginSuccess,
-        setLoginSuccess,
         toggleLoginStatus,
         toggleSignupStatus,
         logoutFunction
