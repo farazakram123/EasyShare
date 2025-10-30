@@ -1,12 +1,15 @@
-import React from 'react'
 import './Dashboard.css'
 import Navbar from '../Navbar/Navbar'
 import { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import FileItem from '../FileItem/FileItem'
+import Left from '../Svg/Left'
+import Right from '../Svg/Right'
+import { StoreContext } from '../../context/StoreContext'
 
 const Dashboard = () => {
+    const { userFiles, fetchUserFiles } = useContext(StoreContext);
     const [email, setEmail] = useState('');
     const [file, setFile] = useState(null);
 
@@ -26,19 +29,31 @@ const Dashboard = () => {
         formData.append('email', email);
 
         const response = await axios.post('http://localhost:8000/api/file/upload', formData);
-        toast.success(response.data.message);
+        if (response.data.success) {
+            toast.success(response.data.message);
+        } else {
+            toast.error(response.data.message);
+        }
     }
 
-    const [userFiles, setUserFiles] = useState([]);
-    const fetchUserFiles = async () => {
-        const response = await axios.post('http://localhost:8000/api/file/fetch', { email: localStorage.getItem('loggedInUserEmail') });
-        setUserFiles(response.data.allFiles);
-    }
+    const [pageNumber, setPageNumber] = useState(1);
 
-    fetchUserFiles();
+    let filesToShow = [];
+    
+    const reloadFile = () => {
+        filesToShow = [];
+        const startIndex = (pageNumber - 1) * 5;
+        const endIndex = startIndex + 5 - 1;
+        for (let i = startIndex; i <= endIndex; i++) {
+            if(i < userFiles.length) {
+                filesToShow.push(userFiles[i]);
+            }
+        }
+    }
+    reloadFile();
 
     useEffect(() => {
-        
+        fetchUserFiles();
     }, []);
 
     return (
@@ -63,8 +78,8 @@ const Dashboard = () => {
                         </div>
                         <div className="right-container-files">
                             {
-                                userFiles && userFiles.length > 0 ?
-                                    userFiles.map((file, index) => (
+                                filesToShow && filesToShow.length > 0 ?
+                                    filesToShow.map((file, index) => (
                                         <div key={index} className="file-item">
                                             <FileItem file={file} />
                                         </div>
@@ -73,9 +88,13 @@ const Dashboard = () => {
                                     )
                             }
                         </div>
+                        <div className="pg-num-container">
+                            <button onClick={() => (pageNumber > 1 && setPageNumber(pageNumber - 1))}><Left /></button>
+                            <div className="pg-num">{pageNumber}</div>
+                            <button onClick={() => (pageNumber < Math.ceil(userFiles.length / 5) && setPageNumber(pageNumber + 1))}><Right /></button>
+                        </div>
                     </div>
                 </div>
-                
             </div>
         </div>
     )

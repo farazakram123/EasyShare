@@ -13,6 +13,12 @@ const StoreContextProvider = ({ children }) => {
 
     const [token, setToken] = useState("");
 
+    const [userFiles, setUserFiles] = useState([]);
+    const fetchUserFiles = async () => {
+        const response = await axios.post('http://localhost:8000/api/file/fetch', { email: localStorage.getItem('loggedInUserEmail') });
+        setUserFiles(response.data.allFiles);
+    }
+
     const toggleLoginStatus = () => {
         setLoginStatus(!loginStatus);
         setSignupStatus(false);
@@ -42,7 +48,10 @@ const StoreContextProvider = ({ children }) => {
         setLoginStatus,
         toggleLoginStatus,
         toggleSignupStatus,
-        logoutFunction
+        logoutFunction,
+        userFiles,
+        setUserFiles,
+        fetchUserFiles
     }
 
     return (

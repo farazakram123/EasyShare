@@ -78,6 +78,19 @@ export const loginUser = async (req, res) => {
     }
 
     try {
+        // Validate email format and strong password
+        if(!validator.isEmail(email)) {
+            return res.status(203).json({ 
+                success: false, 
+                message: 'Invalid email format' 
+            });
+        } else if(password.length < 8) {
+            return res.status(203).json({ 
+                success: false, 
+                message: 'Password must be at least 8 characters long' 
+            });
+        }
+        
         const user = await User.findOne({email});
 
         if(!user) {

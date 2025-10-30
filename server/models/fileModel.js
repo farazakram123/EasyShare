@@ -20,7 +20,7 @@ const fileSchema = new Schema(
     },
     format : {
       type: String,
-      default: 'txt',
+      default: 'docx',
       required: true,
     }
   },
