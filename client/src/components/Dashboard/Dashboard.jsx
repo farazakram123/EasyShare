@@ -9,7 +9,7 @@ import Right from '../Svg/Right'
 import { StoreContext } from '../../context/StoreContext'
 
 const Dashboard = () => {
-    const { userFiles, fetchUserFiles } = useContext(StoreContext);
+    const { url, userFiles, fetchUserFiles } = useContext(StoreContext);
     const [email, setEmail] = useState('');
     const [file, setFile] = useState(null);
 
@@ -28,7 +28,7 @@ const Dashboard = () => {
         formData.append('file', file);
         formData.append('email', email);
 
-        const response = await axios.post('http://localhost:8000/api/file/upload', formData);
+        const response = await axios.post(`${url}/api/file/upload`, formData);
         if (response.data.success) {
             toast.success(response.data.message);
         } else {

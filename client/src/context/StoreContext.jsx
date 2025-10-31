@@ -7,7 +7,7 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = ({ children }) => {
 
-    const url = 'http://localhost:8000';
+    const url = 'https://easyshare-backend-paff.onrender.com';
     const [signupStatus, setSignupStatus] = useState(false);
     const [loginStatus, setLoginStatus] = useState(false);
 
@@ -15,7 +15,7 @@ const StoreContextProvider = ({ children }) => {
 
     const [userFiles, setUserFiles] = useState([]);
     const fetchUserFiles = async () => {
-        const response = await axios.post('http://localhost:8000/api/file/fetch', { email: localStorage.getItem('loggedInUserEmail') });
+        const response = await axios.post(`${url}/api/file/fetch`, { email: localStorage.getItem('loggedInUserEmail') });
         setUserFiles(response.data.allFiles);
     }
 

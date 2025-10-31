@@ -201,7 +201,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 👨‍💻 Author
 
-**Faraz Akram**
+**Mohd Faraz Akram**
 
 - GitHub: [@farazakram123](https://github.com/farazakram123)
 
@@ -213,4 +213,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-Made with ❤️ by Faraz Akram
+Made with ❤️ by Mohd Faraz Akram
